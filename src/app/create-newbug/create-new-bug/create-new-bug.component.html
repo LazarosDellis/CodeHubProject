@@ -1,7 +1,7 @@
 <form [formGroup]="newBugForm">
 
     <div class="form-group">
-        <label>Title:</label>
+        <label class="label">Title:</label>
         <input formControlName="title" type="text" class="form-control" id="titleInput" placeholder="Enter title">
         <div *ngIf="newBugForm.get('title').errors?.required && newBugForm.get('title').dirty" class="text-danger">
             Field is required
@@ -10,7 +10,7 @@
 
 
     <div class="form-group">
-        <label>Description:</label>
+        <label class="label">Description:</label>
         <input formControlName="description" type="text" class="form-control" id="descriptionInput"
             placeholder="Enter description">
         <div *ngIf="newBugForm.get('description').errors?.required && newBugForm.get('description').dirty"
@@ -20,7 +20,7 @@
 
     </div>
     <div class="form-group">
-        <label>Priority:</label>
+        <label class="label">Priority:</label>
         <select formControlName="priority" class="form-control" id="priorityInput" placeholder="Select">
             <option value="1">Minor</option>
             <option value="2">Major</option>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="form-group">
-        <label>Reporter:</label>
+        <label class="label">Reporter:</label>
         <select formControlName="reporter" class="form-control" id="reporterInput" placeholder="Select">
             <option>QA</option>
             <option>PO</option>
@@ -44,7 +44,7 @@
     </div>
 
     <div class="form-group">
-        <label>Status:</label>
+        <label class="label">Status:</label>
         <select formControlName="status" class="form-control" id="statusInput">
             <option>Ready for testing</option>
             <option>Done</option>
@@ -54,33 +54,35 @@
     </div>
 
     <div *ngIf="bugId" class="form-group">
-        <h3>Comments</h3>
-        <div *ngFor="let comment of comments.controls; let idx = index" [formGroup]="comment">
-
-            <label>Description:</label>
-            <input formControlName="description" type="text" class="form-control" id="commDescriptionInput"
-                placeholder="Enter description">
-
-            <label>Name:</label>
-            <div class="d-flex align-items-center">
-                <input formControlName="reporter" type="text" class="form-control" id="commNameInput"
-                    placeholder="Enter name">
-                <span class="ml-4"><button class="btn btn-danger" style="border-radius:50%"
-                        (click)="removeComments(idx)"><b>X</b></button></span>
-            </div>
-            <hr>
+        <h3 >Comments</h3>
+        <div  *ngFor="let comment of comments.controls; let idx = index " [formGroup]="comment" >
+            
+                <label class="label">Name:</label>           
+                    <input  class="form-control" formControlName="reporter" type="text" placeholder="Enter name">
+                <label class="label">Description:</label>
+                <div class="d-flex align-items-center">
+                    <input  class="form-control" formControlName="description" type="text" placeholder="Enter description">
+                    <hr>
+                    <span class="ml-4"><button class="btn btn-danger" style="border-radius:50%"
+                    (click)="removeComments(idx)"><b>X</b></button></span>
+                    
+                </div>
         </div>
         <hr>
-        <button type="button" class="btn btn-dark pull-right" (click)="addComments()">Add Comments</button>
+        <button type="button" class="btn btn-dark " style="float: right;" (click)="addComments()">Add Comments</button>
     </div>
 
 
 
     <div>
-        <button type="submit" class="btn btn-primary" [disabled]="!newBugForm.valid"
+        <button type="submit" class="btn btn-primary"   [disabled]="!newBugForm.valid"
             (click)="onSumbit()">Submit</button>
     </div>
 
 </form>
 
-{{newBugForm.value | json}}
+<footer class="createFooter">
+    
+</footer>
+
+<!-- {{newBugForm.value | json}} -->
